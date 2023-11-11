@@ -13,6 +13,16 @@ This Python script simulates a reaction-diffusion system, a fundamental concept 
 
 ## Installation
 
+Setup virtual environment 
+```
+python -m venv venv
+```
+
+Activate virtual environment
+```
+source venv/bin/activate
+```
+
 Before running the script, ensure you have Python installed on your system along with the following packages:
 - numpy
 - matplotlib
