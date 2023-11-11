@@ -96,11 +96,11 @@ def steps_generator(
       interval: Interval between steps.
     """
 
-    folder_name = f"{min_step}_{max_step}_{interval}_pattern"
-    print(f"Generating pattern to {folder_name} ...")
-
+    folder_name = f"{min_step}_{max_step}_{interval}_{a}_{b}_{feed}_{kill}_pattern"
     directory_path = os.path.join(FILE_PATH, folder_name)
     os.makedirs(directory_path, exist_ok=True)
+
+    print(f"Generating pattern to {directory_path} ...")
 
     for i in range(min_step, max_step, interval):
         print(f"image {i} generating ...")
