@@ -79,7 +79,15 @@ def interactive_simulation_steps(
     return fig
 
 
-def steps_generator(min_step: int, max_step: int, interval: int = 500):
+def steps_generator(
+    min_step: int,
+    max_step: int,
+    interval: int,
+    a: float,
+    b: float,
+    feed: float,
+    kill: float,
+):
     """Generates images for a range of steps at specified intervals.
 
     Args:
@@ -96,7 +104,7 @@ def steps_generator(min_step: int, max_step: int, interval: int = 500):
 
     for i in range(min_step, max_step, interval):
         print(f"image {i} generating ...")
-        img = interactive_simulation_steps(i)
+        img = interactive_simulation_steps(i, a, b, feed, kill)
         file_name = os.path.join(directory_path, f"{i}.png")
         img.savefig(file_name)
         print(f"image {i} saved ...")
@@ -121,7 +129,39 @@ def steps_generator(min_step: int, max_step: int, interval: int = 500):
     type=int,
     help="Interval between steps.",
 )
-def main(min_step: int, max_step: int, interval: int):
+@click.option(
+    "--a",
+    default=1.00,
+    type=float,
+    help="a",
+)
+@click.option(
+    "--b",
+    default=0.3,
+    type=float,
+    help="b",
+)
+@click.option(
+    "--feed",
+    default=0.07,
+    type=float,
+    help="feed",
+)
+@click.option(
+    "--kill",
+    default=0.07,
+    type=float,
+    help="kill",
+)
+def main(
+    min_step: int,
+    max_step: int,
+    interval: int,
+    a: float,
+    b: float,
+    feed: float,
+    kill: float,
+):
     """Command-line tool to generate reaction-diffusion pattern images.
 
     Args:
@@ -129,7 +169,7 @@ def main(min_step: int, max_step: int, interval: int):
       max_step: Maximum number of steps for the simulation.
       interval: Interval between steps for generating images.
     """
-    steps_generator(min_step, max_step, interval)
+    steps_generator(min_step, max_step, interval, a, b, feed, kill)
 
 
 if __name__ == "__main__":
